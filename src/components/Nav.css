@@ -1,0 +1,9 @@
+.Nav-Items {
+    display: flex;
+    list-style: none;
+    float: right;
+}
+
+.Items {
+    margin-right: 1em;
+}
