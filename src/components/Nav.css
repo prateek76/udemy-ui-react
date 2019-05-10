@@ -1,3 +1,8 @@
+.Nav {
+    background: #f3f3f3;
+    height: 66px;
+}
+
 .Nav-Items {
     display: flex;
     list-style: none;
@@ -5,5 +10,5 @@
 }
 
 .Items {
-    margin-right: 1em;
+    margin-right: .5em;
 }
