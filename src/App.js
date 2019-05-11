@@ -4,6 +4,8 @@ import Nav from './components/Nav';
 import Header from './components/Header';
 import HowItWorks from './components/HowItWorks';
 import HorizontalRecommendation from './components/HorizontalRecommendation';
+import HorizontalSection2 from './components/HorizontalSection2';
+
 import Books from './books';
 
 class App extends Component {
@@ -29,6 +31,7 @@ class App extends Component {
         <Header/>
         <HowItWorks/>
         <HorizontalRecommendation Boods={this.state.arry} />
+        <HorizontalSection2 />
       </div>
     );
   }
