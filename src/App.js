@@ -16,9 +16,9 @@ class App extends Component {
 
   componentDidMount() {
     //this.setState({Boks: Books})
-    console.log(Books);
+    //console.log(Books);
     this.setState({arry: Books});
-    console.log(this.state.arry)
+    //console.log(this.state.arry)
   }
 
   render() {

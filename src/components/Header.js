@@ -6,7 +6,7 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <img style={{width: '100%', marginBottom: '-4px'}} alt="banner" src={ImageBanner} />
+                <img style={{width: '100%', marginBottom: '-8px'}} alt="banner" src={ImageBanner} />
             </div>
         );
     }
