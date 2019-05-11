@@ -1,0 +1,40 @@
+.HowItWorks {    
+    display: block;
+    border: none;
+    background: -webkit-linear-gradient(-45deg,#EC5252 0,#6E1A52 100%);
+    background: -moz-linear-gradient(-45deg,#EC5252 0,#6E1A52 100%);
+    background: -ms-linear-gradient(-45deg,#EC5252 0,#6E1A52 100%);
+    background: -o-linear-gradient(-45deg,#EC5252 0,#6E1A52 100%);
+    background: linear-gradient(-45deg,#EC5252 0,#6E1A52 100%);
+}
+
+.info {
+    display: flex;
+}
+
+.info-in {
+    padding: 20px 25px;
+    width: 33%;
+    display: flex;
+}
+
+.info-icon {
+    color: #fff;
+    float: left;
+    display: block;
+    margin-right: 16px;
+    margin-top: -2px;
+    font-size: 47px;
+    height: 1em;
+}
+
+.info-text b {
+    font-size: 17px;
+    display: block;
+    color: #fff;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #fff;
+}
