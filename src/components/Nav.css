@@ -1,14 +1,159 @@
 .Nav {
-    background: #f3f3f3;
-    height: 66px;
+    background: #fff;
+    height: 65px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
 }
 
 .Nav-Items {
+    margin-right: 1em;
     display: flex;
     list-style: none;
     float: right;
 }
 
 .Items {
-    margin-right: .5em;
+    margin-right: .2em;
+}
+
+.Items-text {
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #505763;
+    font-weight: 400;
+    height: 15px;
+    line-height: 10px;
+    padding: 12px 15px;
+    white-space: nowrap;
+}
+
+.Items-text2 {
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #505763;
+    font-weight: 400;
+    height: 10px;
+    line-height: 10px;
+    padding: 12px 15px;
+    padding-left: 0;
+    white-space: nowrap;
+}
+
+.Items-text3 {
+    font-size: 20px!important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 3px;
+    color: #686f7a;
+    font-weight: 200;
+    height: 0px;
+    line-height: 10px;
+    padding-left: 10px;
+    padding-top: 9px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.Items-text2:hover {
+    cursor: pointer;
+}
+
+.Items-text:hover {
+    background: rgba(20,23,28,.05);
+    border-color: rgba(20,23,28,.05);
+    cursor: pointer;
+}
+
+.logo-cont {
+    width: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.logo {
+    border: 0;
+    vertical-align: middle;
+    max-width: 100px;
+    height: 70px;
+    float: left;
+}
+
+.login {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 11px 12px;
+    font-size: 15px;
+    line-height: 1.35135;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #686f7a;
+    background-color: #fff;
+    border: 1px solid #686f7a;
+}
+
+.login:hover {
+    color: #000;
+    border: 1px solid #000;
+}
+
+.sign-up {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 11px 12px;
+    font-size: 15px;
+    line-height: 1.35135;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background-color: #ec5252;
+    border: 1px solid transparent;
+}
+
+.sign-up:hover {
+    background-color: #961515;
+}
+
+.cart-icon {
+    font-size: 24px!important;
+    padding: 12px;
+    color: #686f7a;
+}
+
+.cart-icon-container {
+    margin-right: 20px;
+}
+
+.cart-icon:hover {
+    background: #f3f3f3;
+    border-radius: 50%;
 }
