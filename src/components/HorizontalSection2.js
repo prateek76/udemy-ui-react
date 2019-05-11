@@ -65,6 +65,7 @@ class HorizontalSection2 extends Component {
                     arrowLeft={ArrowLeft}
                     arrowRight={ArrowRight}
                     hideSingleArrow={true}
+                    alignCenter={false}
                 />
                 </div>
             </div>

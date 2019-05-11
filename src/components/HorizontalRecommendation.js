@@ -68,6 +68,7 @@ class HorizontalRecommendation extends Component {
                     arrowLeft={ArrowLeft}
                     arrowRight={ArrowRight}
                     hideSingleArrow={true}
+                    alignCenter={false}
                 />
                 </div>
             </div>
