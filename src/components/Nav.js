@@ -1,18 +1,63 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
-import InputBase from '@material-ui/core/InputBase';
 import './Nav.css';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Apps from '@material-ui/icons/Apps';
 import ModalC from './ModalC';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
+import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
+import Data from '../books.json';
+
+function escapeRegexCharacters(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  
+  function getSuggestions(value) {
+    const escapedValue = escapeRegexCharacters(value.trim());
+    
+    if (escapedValue === '') {
+      return [];
+    }
+  
+    const regex = new RegExp('\\b' + escapedValue, 'i');
+    
+    return Data.filter(person => regex.test(getSuggestionValue(person)));
+  }
+  
+  function getSuggestionValue(suggestion) {
+    return `${suggestion.author} ${suggestion.language}`;
+  }
+  
+  function renderSuggestion(suggestion, { query }) {
+    const suggestionText = `${suggestion.author} ${suggestion.language}`;
+    const matches = AutosuggestHighlightMatch(suggestionText, query);
+    const parts = AutosuggestHighlightParse(suggestionText, matches);
+
+    return (
+      <span className={'suggestion-content'}>
+        <img className="image-sugg" src={require(`../`+suggestion.imageLink)} alt="suggestion"/>
+        <span className="name">
+          {
+            parts.map((part, index) => {
+              const className = part.highlight ? 'highlight' : null;
+  
+              return (
+                <span className={className} key={index}>{part.text}</span>
+              );
+            })
+          }
+        </span>
+      </span>
+    );
+  }
+
+
+  
 
 class Nav extends Component {
 
@@ -22,12 +67,33 @@ class Nav extends Component {
         this.state = {
           modalIsOpen: false,
           name: "",
-          password: ""
+          password: "",
+          value: '',
+          suggestions: []
         };
      
         this.openModal = this.openModal.bind(this);
         this.onLoginSubmit = this.onLoginSubmit.bind(this);
     }
+
+    onChange = (event, { newValue, method }) => {
+        this.setState({
+          value: newValue
+        });
+    };
+
+    onSuggestionsFetchRequested = ({ value }) => {
+        this.setState({
+          suggestions: getSuggestions(value)
+        });
+    };
+    
+      onSuggestionsClearRequested = () => {
+        this.setState({
+          suggestions: []
+        });
+    };
+    
 
     openModal = () => {
         this.setState({modalIsOpen: true});
@@ -42,6 +108,7 @@ class Nav extends Component {
         })
         .then(response => {
             // Handle success.
+            alert("loggedIn with Jwt Token"+ response.data.jwt);
             console.log('Well done!');
             console.log('User profile', response.data.user);
             console.log('User token', response.data.jwt);
@@ -60,6 +127,13 @@ class Nav extends Component {
     };
 
     render() {
+        const { value, suggestions } = this.state;
+        const inputProps = {
+        placeholder: "Search for anything",
+        value,
+        onChange: this.onChange
+        };
+
         return (
             <div className="Nav">
                 <div className="logo-cont">
@@ -71,8 +145,16 @@ class Nav extends Component {
                     Categories
                 </li>
                 <div className="search-parent" >
-                    <Paper elevation={1} style={{marginLeft: 80,padding: '0px 6px',display: 'flex',alignItems: 'center', width: 600, backgroundColor: '#f3f3f3'}}>
-                        <InputBase style={{marginLeft: 8,flex: 1, fontSize: '13px', fontWeight: 400, color: '#29303b', backgroundColor: '#f3f3f3'}} placeholder="Search for anything" />
+                    <Paper elevation={0} style={{marginLeft: 80,padding: '0px 6px',display: 'flex',alignItems: 'center', width: 600}}>
+                    <Autosuggest 
+                        style={{width: '100%'}}
+                        suggestions={suggestions}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        getSuggestionValue={getSuggestionValue}
+                        renderSuggestion={renderSuggestion}
+                        inputProps={inputProps} 
+                    />
                         <IconButton style={{padding: '10px'}} aria-label="Search">
                             <SearchIcon />
                         </IconButton>

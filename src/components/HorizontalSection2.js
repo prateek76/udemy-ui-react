@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './HorizontalRecommendation.css';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import Books from '../books2.json';
