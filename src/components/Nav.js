@@ -12,6 +12,7 @@ import Apps from '@material-ui/icons/Apps';
 import Modal from 'react-modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 class Nav extends Component {
 
@@ -26,19 +27,31 @@ class Nav extends Component {
      
         this.openModal = this.openModal.bind(this);
         //this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.onLoginSubmit = this.onLoginSubmit.bind(this);
     }
 
-    openModal() {
+    openModal = () => {
         this.setState({modalIsOpen: true});
     }
-     
-    /*afterOpenModal() {
-        this.subtitle.style.color = '#f00';
-    }*/
     
-    closeModal() {
-        this.setState({modalIsOpen: false});
+    onLoginSubmit = () => {
+        //request
+        axios
+        .post('http://localhost:1337/auth/local', {
+            identifier: this.state.name,
+            password: this.state.password
+        })
+        .then(response => {
+            // Handle success.
+            console.log('Well done!');
+            console.log('User profile', response.data.user);
+            console.log('User token', response.data.jwt);
+        })
+        .catch(error => {
+            // Handle error.
+            console.log('An error occurred:', error);
+        });
+        this.setState({name: "", password: "", modalIsOpen: false});
     }
 
     handleChange = name => event => {
@@ -86,7 +99,7 @@ class Nav extends Component {
                             <Modal
                                 isOpen={this.state.modalIsOpen}
                                 onAfterOpen={this.afterOpenModal}
-                                onRequestClose={this.closeModal}
+                                onRequestClose={this.onLoginSubmit}
                                 style={customStyles}
                                 contentLabel="Example Modal"
                             >
@@ -115,7 +128,7 @@ class Nav extends Component {
                                         variant="outlined"
                                     />
                                 </div>
-                                <Button onClick={this.closeModal} variant="outlined" color="inherit" className="login_submit">
+                                <Button onClick={this.onLoginSubmit} variant="outlined" color="inherit" className="login_submit">
                                     Login
                                 </Button>
                                 
