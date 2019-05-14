@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Apps from '@material-ui/icons/Apps';
-import Modal from 'react-modal';
+import ModalC from './ModalC';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
@@ -26,7 +26,6 @@ class Nav extends Component {
         };
      
         this.openModal = this.openModal.bind(this);
-        //this.afterOpenModal = this.afterOpenModal.bind(this);
         this.onLoginSubmit = this.onLoginSubmit.bind(this);
     }
 
@@ -95,44 +94,7 @@ class Nav extends Component {
                     </li>
                     <li className="Items">
                         <div>
-                            <button onClick={this.openModal} className="login">Log In</button>
-                            <Modal
-                                isOpen={this.state.modalIsOpen}
-                                onAfterOpen={this.afterOpenModal}
-                                onRequestClose={this.onLoginSubmit}
-                                style={customStyles}
-                                contentLabel="Example Modal"
-                            >
-                                <div className="login_field_parent">
-                                    <TextField
-                                        id="outlined-name"
-                                        label="Username"
-                                        className="login_field"
-                                        value={this.state.name}
-                                        onChange={this.handleChange('name')}
-                                        margin="normal"
-                                        placeholder="Username"
-                                        variant="outlined"
-                                    />
-                                </div>
-                                <div className="password_field_parent">
-                                    <TextField
-                                        id="outlined-name"
-                                        label="Password"
-                                        className="password_field"
-                                        value={this.state.password}
-                                        onChange={this.handleChange('password')}
-                                        margin="normal"
-                                        placeholder="Password"
-                                        type="password"
-                                        variant="outlined"
-                                    />
-                                </div>
-                                <Button onClick={this.onLoginSubmit} variant="outlined" color="inherit" className="login_submit">
-                                    Login
-                                </Button>
-                                
-                            </Modal>
+                            <ModalC isOpen={this.state.modalIsOpen} loginId={this.state.name} loginPass={this.state.password} openModal={this.openModal} onLoginSubmit={this.onLoginSubmit} handleChange={this.handleChange} />
                         </div>
                     </li>
                     <li className="Items">
@@ -148,17 +110,6 @@ class Nav extends Component {
 
 Nav.propTypes = {
 
-};
-
-const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
-    }
 };
 
 export default Nav;
