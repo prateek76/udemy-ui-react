@@ -158,3 +158,16 @@
     background: #f3f3f3;
     border-radius: 50%;
 }
+
+.login_field_parent {
+    display: block;
+}
+
+.password_field_parent {
+    margin-top: -15px;
+    display: block;
+}
+
+.login_submit {
+    width: 100%;
+}
